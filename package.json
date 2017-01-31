@@ -1,0 +1,27 @@
+{
+  "name": "chat-draw-sockets",
+  "version": "1.0.0",
+  "description": "A node app that uses sockets to make a drawing and chat app in real time.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndyTuttle12/chat-draw.git"
+  },
+  "keywords": [
+    "socketio",
+    "nodejs",
+    "canvas"
+  ],
+  "author": "Andy Tuttle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndyTuttle12/chat-draw/issues"
+  },
+  "homepage": "https://github.com/AndyTuttle12/chat-draw#readme",
+  "dependencies": {
+    "socket.io": "^1.7.2"
+  }
+}
