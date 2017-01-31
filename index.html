@@ -2,14 +2,33 @@
 <html>
 <head>
 	<title>ChatDraw!</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.js"></script>
-<script type="text/javascript">
+	<div class="container text-center">
 
-	var socketio = io.connect('http://127.0.0.1:8080');
+		<div class="row">
+			<h3>Enter your message here</h3>
+			<form id="chatForm" onsubmit="sendChatMessage()">
+				<input type="text" id="chat-message"/>
+				<input class="btn btn-primary" type="submit" value="send"/>
+			</form>
+			<div id="userNames"></div>
+
+			<div id="userChats"></div>
+			<div class="tool-bar col-sm-12">
+				<input type="color" id="color-picker"/>
+				<label>Choose thickness</label>
+				<input type="number" id="thickness" placeholder=10 />
+			</div>
+
+			<canvas id="canvas" width="500px" height="500px"></canvas>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.js"></script>
+	<script type="text/javascript" src="http://localhost:8081/scripts.js"></script>
 	
-</script>
-
 </body>
 </html>
