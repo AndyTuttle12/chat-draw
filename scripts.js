@@ -1,4 +1,4 @@
-var socketio = io.connect('http://10.150.51.32:8080');
+var socketio = io.connect('http://35.165.246.93:8080');
 // 10.150.51.32
 socketio.on('users',(socketUsers)=>{
 	var newHTML = "";
