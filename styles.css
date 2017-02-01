@@ -1,3 +1,30 @@
 canvas{
 	border: 2px solid #000;
 }
+
+.container{
+	width: 500px;
+}
+
+.tool-bar{
+	color: #000;
+	width: 504px;
+	background-color: #999;
+	border: 2px solid #777;
+	border-radius: 5px 5px 0 0;
+}
+
+.chats{
+	height: 100px;
+}
+
+#userChats, #userNames{
+	height: 100px;
+	overflow-y: scroll;
+	border: 2px solid #777;
+	border-radius: 4px;
+}
+
+.currName{
+	color: red;
+}

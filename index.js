@@ -21,18 +21,22 @@ var io = socketIo.listen(server);
 var socketUsers = [];
 
 io.sockets.on('connect',(socket)=>{
-	console.log('Someone connected via socket.');
-	socketUsers.push({
-		socketID: socket.id,
-		name: 'Anonymous'
-	});
-	io.sockets.emit('users',socketUsers);
 
+	console.log('Someone connected via socket.');
+	socket.on('userNameToServer',(nameObject)=>{
+		socketUsers.push({
+			socketID: socket.id,
+			name: nameObject.name
+		});
+		io.sockets.emit('users',socketUsers);
+	});
+	
 	socket.on('messageToServer', (messageObject)=>{
 		console.log('Someone sent a message. It is',messageObject.message);
 		io.sockets.emit("messageToClient",{
 			message: messageObject.message,
-			date: new Date()
+			date: new Date().toLocaleTimeString(),
+			name: messageObject.name
 		});
 	});
 	socket.on('drawingToServer',(drawingData)=>{
@@ -40,7 +44,12 @@ io.sockets.on('connect',(socket)=>{
 			io.sockets.emit('drawingToClients', drawingData);
 		}
 	})
+	io.sockets.on('disconnect', (socket)=>{
+		console.log('someone disconnected from a socket.');
+	});
 });
+
+
 
 
 server.listen(8080);

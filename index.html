@@ -5,18 +5,21 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
+<body onload="getNames()">
 	<div class="container text-center">
 
-		<div class="row">
-			<h3>Enter your message here</h3>
-			<form id="chatForm" onsubmit="sendChatMessage()">
-				<input type="text" id="chat-message"/>
+		<div class="row text-left">
+			<h3 class="text-center">Enter your message here</h3>
+			<form id="chatForm" class="col-sm-10" onsubmit="sendChatMessage()">
+				<input type="text" class="col-sm-8" id="chat-message"/>
 				<input class="btn btn-primary" type="submit" value="send"/>
 			</form>
-			<div id="userNames"></div>
-
-			<div id="userChats"></div>
+		</div>
+		<div class="row chats text-left">
+			<div id="userChats" class="col-sm-8"></div>
+			<div id="userNames" class="col-sm-4"></div>
+		</div>
+		<div class="row draw text-left">
 			<div class="tool-bar col-sm-12">
 				<input type="color" id="color-picker"/>
 				<label>Choose thickness</label>

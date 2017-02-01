@@ -1,24 +1,44 @@
-var socketio = io.connect('http://127.0.0.1:8080');
+var socketio = io.connect('http://10.150.51.32:8080');
 // 10.150.51.32
 socketio.on('users',(socketUsers)=>{
-	console.log(socketUsers);
 	var newHTML = "";
 	socketUsers.map((currSocket, index) =>{
-		newHTML += '<li class="user">' + currSocket.name + '</li>';
+		newHTML += '<li class="user" id="' + currSocket.name + '">' + currSocket.name + '</li>';
+		if(currSocket.name == userName){
+			console.log(document.getElementById(userName))
+			// document.getElementById(userName).addClass('currName');
+		}
 	});
 	document.getElementById('userNames').innerHTML = newHTML;
 })
 
 socketio.on('messageToClient',(messageObject)=>{
-	document.getElementById('userChats').innerHTML += '<div class="message">' + messageObject.message + ' -- ' + messageObject.date + '</div>';
+	// console.log(messageObject);
+	document.getElementById('userChats').innerHTML += '<div class="message"><strong>' + messageObject.name + '</strong>: ' + messageObject.message + ' -- ' + messageObject.date + '</div>';
+	updateScroll();
 });
+
+var userName;
+function getNames(){
+	while(!userName){
+		userName = prompt("Your Name Here");
+	}
+	socketio.emit('userNameToServer',{
+		name: userName
+	})
+}
+
+function updateScroll(){
+	var chatScroll = document.getElementById('userChats');
+	chatScroll.scrollTop = chatScroll.scrollHeight;
+}
 
 function sendChatMessage(){
 	event.preventDefault();
 	var messageToSend = document.getElementById('chat-message').value;
 	socketio.emit('messageToServer',{
 		message: messageToSend,
-		name: "Anonymous"
+		name: userName
 	});
 	document.getElementById("chatForm").reset();
 }
